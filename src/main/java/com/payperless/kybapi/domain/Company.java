@@ -32,10 +32,13 @@ public class Company {
 
     private String name;
     private String registrationNumber;
+    private String vatNumber;
+    private String taxId;
     private String registrationLocation;
     private TypeOfEntity entityType;
     private LocalDate registrationDate;
     private String city;
     private String state;
     private String zip;
+
 }

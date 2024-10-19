@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.payperless.kybapi.domain.Company;
 import com.payperless.kybapi.domain.Country;
 import com.payperless.kybapi.dto.DocumentResponse;
+import com.payperless.kybapi.dto.KybResult;
 import com.payperless.kybapi.dto.Step1Dto;
 import com.payperless.kybapi.enums.DocumentType;
 import com.payperless.kybapi.facade.KybFacade;
@@ -46,6 +47,12 @@ class KybController {
     @Operation(summary = "")
     public Company step2(@RequestBody Company dto) {
         return kybFacade.createOrUpdate(dto);
+    }
+
+    @PostMapping(value = "/result")
+    @Operation(summary = "")
+    public KybResult getResult(@RequestParam Long companyId) {
+        return kybFacade.getResult(companyId);
     }
 
     @Operation(summary = "", description = "")

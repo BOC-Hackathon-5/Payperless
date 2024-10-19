@@ -9,6 +9,7 @@ import com.payperless.kybapi.domain.Company;
 import com.payperless.kybapi.domain.Country;
 import com.payperless.kybapi.repository.CompanyRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -42,4 +43,7 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
+    public Company find(Long companyId) {
+        return companyRepository.findById(companyId).orElseThrow(EntityNotFoundException::new);
+    }
 }
