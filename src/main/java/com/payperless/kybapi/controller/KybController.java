@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.payperless.kybapi.domain.Company;
+import com.payperless.kybapi.domain.Country;
 import com.payperless.kybapi.dto.DocumentResponse;
 import com.payperless.kybapi.dto.Step1Dto;
-import com.payperless.kybapi.dto.Step1Response;
 import com.payperless.kybapi.enums.DocumentType;
 import com.payperless.kybapi.facade.KybFacade;
 
@@ -37,22 +38,27 @@ class KybController {
 
     @PostMapping(value = "/step/1")
     @Operation(summary = "")
-    public Step1Response step1(@RequestBody Step1Dto dto) {
+    public Company step1(@RequestBody Step1Dto dto) {
         return kybFacade.step1(dto);
     }
 
     @Operation(summary = "", description = "")
     @PostMapping(value = "/document", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public DocumentResponse verifyDocument(@RequestPart(value = "doc") MultipartFile document,
-                                             @RequestParam DocumentType documentType){
+                                           @RequestParam DocumentType documentType) {
         return kybFacade.verifyDocument(document, documentType);
     }
 
+    @Operation(summary = "", description = "")
+    @GetMapping(value = "/document/types")
+    public List<DocumentType> getDocumentTypes() {
+        return kybFacade.getDocumentTypes();
+    }
 
     @Operation(summary = "", description = "")
-    @GetMapping(value = "/document/types", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public List<DocumentType> getDocumentTypes(){
-        return kybFacade.getDocumentTypes();
+    @GetMapping(value = "/country/list")
+    public List<Country> getCountries() {
+        return kybFacade.getCountries();
     }
 
 }

@@ -1,0 +1,15 @@
+package com.payperless.kybapi.enums;
+
+public enum TypeOfEntity {
+
+    LIMITED_LIABILITY_COMPANY,
+    PUBLICLY_LISTED_COMPANY,
+    SOLE_PROPRIETOR,
+    PARTNERSHIP,
+    CORPORATION,
+    TRUST,
+    PRIVATE_FOUNDATION,
+    CHARITY,
+    NONPROFIT_ORGANISATION
+
+}
