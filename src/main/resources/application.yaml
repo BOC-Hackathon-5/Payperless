@@ -1,0 +1,28 @@
+management:
+  endpoint.health:
+    enabled: true
+    probes.enabled: true
+  endpoints.web.cors:
+    allowed-headers: '*'
+    allowed-methods: '*'
+    allowed-origin-patterns: '*'
+    allowed-origins: '*'
+  health.defaults.enabled: true
+
+spring:
+  application.name: '@project.artifactId@:@project.version@'
+  datasource:
+    driverClassName: org.postgresql.Driver
+    name: postgres-datasource
+    hikari.maximum-pool-size: 20
+    password: ${DB_PASSWORD}
+    username: ${DB_USER}
+    jdbcUrl: ${DB_URL}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming.physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    open-in-view: false

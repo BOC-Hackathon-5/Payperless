@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    password: root
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/kyb_api
+
+server:
+  port: 8888
