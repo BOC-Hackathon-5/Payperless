@@ -1,6 +1,7 @@
 package com.payperless.kybapi.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ import com.payperless.kybapi.enums.TypeOfEntity;
 @Service
 public class EnrichmentService {
 
-    public Company enrich(String companyName, Country country) {
-        return mockCompany(companyName, country);
+    public List<Company> enrich(String companyName, Country country) {
+        return List.of(mockCompany(companyName, country));
     }
 
     private Company mockCompany(String companyName, Country country) {

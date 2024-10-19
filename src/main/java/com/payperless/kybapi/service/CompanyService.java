@@ -1,5 +1,6 @@
 package com.payperless.kybapi.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +21,25 @@ public class CompanyService {
         return companyRepository.findByNameAndCountry(companyName, country);
     }
 
-    public Company save(Company enriched) {
-        return companyRepository.save(enriched);
+    public List<Company> save(List<Company> enriched) {
+        return companyRepository.saveAll(enriched);
     }
+
+    public Company createOrUpdate(Company newCompany) {
+        Optional<Company> oldCompany = companyRepository.findById(newCompany.getId());
+        if (oldCompany.isEmpty()) {
+            newCompany.setId(null);
+            return companyRepository.save(newCompany);
+        }
+        Company company = oldCompany.get();
+        company.setRegistrationNumber(newCompany.getRegistrationNumber());
+        company.setRegistrationLocation(newCompany.getRegistrationLocation());
+        company.setEntityType(newCompany.getEntityType());
+        company.setRegistrationDate(newCompany.getRegistrationDate());
+        company.setCity(newCompany.getCity());
+        company.setState(newCompany.getState());
+        company.setZip(newCompany.getZip());
+        return companyRepository.save(company);
+    }
+
 }

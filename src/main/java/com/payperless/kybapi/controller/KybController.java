@@ -38,8 +38,14 @@ class KybController {
 
     @PostMapping(value = "/step/1")
     @Operation(summary = "")
-    public Company step1(@RequestBody Step1Dto dto) {
+    public List<Company> step1(@RequestBody Step1Dto dto) {
         return kybFacade.step1(dto);
+    }
+
+    @PostMapping(value = "/step/2")
+    @Operation(summary = "")
+    public Company step2(@RequestBody Company dto) {
+        return kybFacade.createOrUpdate(dto);
     }
 
     @Operation(summary = "", description = "")

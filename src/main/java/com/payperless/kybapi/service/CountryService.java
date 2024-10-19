@@ -17,7 +17,7 @@ public class CountryService {
     private final CountryRepository countryRepository;
 
     public Country find(String countryName) {
-        Optional<Country> byName = countryRepository.findByName(countryName);
+        Optional<Country> byName = countryRepository.findByNameAndShowOnUiTrue(countryName);
         return byName.orElseThrow(IllegalArgumentException::new);
     }
 

@@ -10,5 +10,5 @@ import com.payperless.kybapi.domain.Country;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
-    Optional<Country> findByName(String name);
+    Optional<Country> findByNameAndShowOnUiTrue(String name);
 }

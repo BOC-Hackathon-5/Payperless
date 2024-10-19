@@ -29,14 +29,14 @@ public class KybFacade {
     private final CompanyService companyService;
     private final CountryService countryService;
 
-    public Company step1(Step1Dto dto) {
+    public List<Company> step1(Step1Dto dto) {
         Country country = countryService.find(dto.getCountry());
         Optional<Company> company = companyService.find(dto.getCompanyName(), country);
         if (company.isPresent()) {
-            return company.get();
+            return List.of(company.get());
         }
 
-        Company enriched = enrichmentService.enrich(dto.getCompanyName(), country);
+        List<Company> enriched = enrichmentService.enrich(dto.getCompanyName(), country);
         return companyService.save(enriched);
     }
 
@@ -50,5 +50,9 @@ public class KybFacade {
 
     public List<Country> getCountries() {
         return countryService.getAll();
+    }
+
+    public Company createOrUpdate(Company newCompany) {
+        return companyService.createOrUpdate(newCompany);
     }
 }
