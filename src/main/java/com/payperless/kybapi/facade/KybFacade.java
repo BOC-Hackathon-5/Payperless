@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.payperless.kybapi.domain.BlackList;
 import com.payperless.kybapi.domain.Company;
 import com.payperless.kybapi.domain.Country;
 import com.payperless.kybapi.dto.Check;
+import com.payperless.kybapi.dto.CompanyAge;
 import com.payperless.kybapi.dto.DocumentResponse;
 import com.payperless.kybapi.dto.JiniusEntityResponse;
 import com.payperless.kybapi.dto.KybResult;
@@ -61,8 +63,8 @@ public class KybFacade {
 
     public KybResult getResult(Long companyId) {
         Company company = companyService.find(companyId);
-//        Check<CompanyAge> companyAgeCheck = checkService.companyAgeCheck(company.getRegistrationDate());
-//        Check<BlackList> blackListCheck = checkService.blackListCheck(company.getCountry(), company.getRegistrationNumber());
+        Check<CompanyAge> companyAgeCheck = checkService.companyAgeCheck(company.getRegistrationDate());
+        Check<BlackList> blackListCheck = checkService.blackListCheck(company.getCountry(), company.getRegistrationNumber());
 //        Check<JiniusEntityResponse> jiniusEntityCheck = checkService.jiniusEntityCheck(
 //                company.getId(),
 //                company.getVatNumber(),
@@ -78,9 +80,8 @@ public class KybFacade {
                 company,
                 List.of(),
                 jiniusEntityCheck,
-                null, null
-//                blackListCheck,
-//                companyAgeCheck
+                blackListCheck,
+                companyAgeCheck
         );
     }
 }

@@ -52,12 +52,7 @@ public class CheckService {
                                                          String taxId) {
         AccessToken auth = jiniusClient.auth(GRANT_TYPE, CLIENT_ID, CLIENT_SECRET);
         String token = "Bearer " + auth.getAccessToken();
-//        String auth = jiniusClient.auth(GRANT_TYPE, CLIENT_ID, CLIENT_SECRET);
-        System.out.println("auth = " + auth);
-//        String token = "Bearer ";
-//        jiniusClient.findEntity(vatNumber, registrationNumber, taxId);
-        JiniusEntityResponse entity = null;
-        log.info("token: {}", token);
+        JiniusEntityResponse entity;
         try {
             entity = jiniusClient.findEntity(vatNumber, registrationNumber, taxId, token);
         } catch (Exception e) {

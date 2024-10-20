@@ -15,8 +15,8 @@ spring:
     driverClassName: org.postgresql.Driver
     name: postgres-datasource
     hikari.maximum-pool-size: 20
-    password: +]G.dl>].CHEh<v[
-    username: service
+    password: root
+    username: postgres
     url: jdbc:postgresql://localhost:5432/kyb_api
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

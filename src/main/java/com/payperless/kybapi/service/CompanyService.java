@@ -34,6 +34,8 @@ public class CompanyService {
         }
         Company company = oldCompany.get();
         company.setRegistrationNumber(newCompany.getRegistrationNumber());
+        company.setTaxId(newCompany.getTaxId());
+        company.setVatNumber(newCompany.getVatNumber());
         company.setRegistrationLocation(newCompany.getRegistrationLocation());
         company.setEntityType(newCompany.getEntityType());
         company.setRegistrationDate(newCompany.getRegistrationDate());
