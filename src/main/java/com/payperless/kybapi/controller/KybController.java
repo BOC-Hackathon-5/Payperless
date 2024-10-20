@@ -58,8 +58,9 @@ class KybController {
     @Operation(summary = "", description = "")
     @PostMapping(value = "/document", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public DocumentResponse verifyDocument(@RequestPart(value = "doc") MultipartFile document,
-                                           @RequestParam DocumentType documentType) {
-        return kybFacade.verifyDocument(document, documentType);
+                                           @RequestParam DocumentType documentType,
+                                           @RequestParam Long companyId) {
+        return kybFacade.verifyDocument(document, documentType, companyId);
     }
 
     @Operation(summary = "", description = "")

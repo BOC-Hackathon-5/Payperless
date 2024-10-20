@@ -45,8 +45,12 @@ public class KybFacade {
         return companyService.save(enriched);
     }
 
-    public DocumentResponse verifyDocument(MultipartFile document, DocumentType documentType) {
-        return documentService.verifyDocument(document, documentType);
+    public DocumentResponse verifyDocument(MultipartFile document, DocumentType documentType, Long companyId) {
+        try {
+            return documentService.verifyDocument(document, documentType, companyService.find(companyId));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<DocumentType> getDocumentTypes() {
